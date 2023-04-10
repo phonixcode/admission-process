@@ -20,3 +20,15 @@
 <!-- Custom script for all pages -->
 <script type="text/javascript" src="{{ asset('front/js/script.js') }}"></script>
 @stack('js')
+{{-- <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css"> --}}
+<script>
+    var botmanWidget = {
+        title: 'My School Guide',
+        mainColor: '#3f51b5',
+        bubbleBackground: '#3f51b5',
+        aboutText: '',
+        introMessage: "✋ Hi there! How can I assist you today?"
+    };
+</script>
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>

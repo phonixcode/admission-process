@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolTagController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\AuthController as ControllersAuthController;
+use App\Http\Controllers\BotManController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,7 @@ Route::get('/faq', [FrontendController::class, 'faqPage'])->name('faqs');
 Route::get('/privacy', [FrontendController::class, 'privacyPage'])->name('privacy');
 Route::get('/terms-condition', [FrontendController::class, 'termsAndConditionPage'])->name('terms.condition');
 
+Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
 
 Route::get('login', [ControllersAuthController::class, 'login'])->name('login');
 Route::get('register', [ControllersAuthController::class, 'register'])->name('register');

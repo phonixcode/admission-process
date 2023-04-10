@@ -58,11 +58,10 @@ class FrontendController extends Controller
         }
 
         if ($data !== null) {
-            $schools = $schools->where('title', 'LIKE', '%' . $data . '%')->get();
+            $schools = $schools->where('title', 'LIKE', '%' . $data . '%')->paginate(5);
+        } else {
+            $schools = $schools->with('school_reviews')->paginate(5);
         }
-
-        $schools = $schools->with('school_reviews')->paginate(5);
-
         return $schools;
     }
 
@@ -95,7 +94,7 @@ class FrontendController extends Controller
     {
         $query = $request->input('query');
         $schools = School::where('title', 'LIKE', '%' . $query . '%')
-            ->orderBy('id', 'DESC')->get();
+            ->orderBy('id', 'DESC')->paginate(5);
         $locations = SchoolTag::with('schools')->get();
         $featured_schools = School::where('is_featured', 1)->get();
         return view('frontend.pages.school', compact('schools', 'locations', 'featured_schools'));
