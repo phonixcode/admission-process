@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-4 col-md-3 col-lg-3 col-xl-2 pb15 pt15">
                 <div class="logo-widget home1">
-                    <img class="img-fluid" src="front/images/header-logo.png" alt="header-logo.png">
+                    <img class="img-fluid" src="{{ asset('front/images/header-logo.png') }}" alt="header-logo.png">
                     <span>MSG</span>
                 </div>
             </div>

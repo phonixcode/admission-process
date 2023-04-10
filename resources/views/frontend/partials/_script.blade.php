@@ -19,3 +19,4 @@
 <script type="text/javascript" src="{{ asset('front/js/timepicker.js') }}"></script>
 <!-- Custom script for all pages -->
 <script type="text/javascript" src="{{ asset('front/js/script.js') }}"></script>
+@stack('js')

@@ -47,98 +47,7 @@
                 <div class="app-main" id="main">
                     <!-- begin container-fluid -->
 
-                    <div class="container-fluid">
-                        <!-- begin row -->
-                        <div class="row">
-                            <div class="col-md-12 m-b-30">
-                                <!-- begin page title -->
-                                <div class="d-block d-sm-flex flex-nowrap align-items-center">
-                                    <div class="page-title mb-2 mb-sm-0">
-                                        <h1>Dashboard</h1>
-                                    </div>
-                                </div>
-                                <!-- end page title -->
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                        <!-- start dashboard contant -->
-                        <div class="row">
-                            <div class="col-lg-12 col-xxl-3">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="card card-statistics">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="media">
-                                                            <i class="fa fa-group font-60 mr-4"></i>
-                                                            <div class="media-body pb-0">
-                                                                <h4 class="mb-1">0</h4>
-                                                                <p>New Users</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="col-3">
-                                        <div class="card card-statistics">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="media">
-                                                            <i class="fa fa-sitemap font-60 mr-4"></i>
-                                                            <div class="media-body pb-0">
-                                                                <h4 class="mb-1">0</h4>
-                                                                <p>Total Categories</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="card card-statistics">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="media">
-                                                            <i class="ti ti-tag font-60 mr-4"></i>
-                                                            <div class="media-body pb-0">
-                                                                <h4 class="mb-1">0</h4>
-                                                                <p>Total Posts</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                    <div class="col-6">
-                                        <div class="card card-statistics">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="media">
-                                                            <i class="fa fa-group font-60 mr-4"></i>
-                                                            <div class="media-body pb-0">
-                                                                <h4 class="mb-1">0</h4>
-                                                                <p>Total Users</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end dashboard contant -->
-                    </div>
+                   @yield('content')
                     <!-- end container-fluid -->
                 </div>
                 <!-- end app-main -->
@@ -164,6 +73,100 @@
 
     <!-- custom app -->
     <script src="{{ asset('back/js/app.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote();
+        });
+    </script>
+
+    <script>
+        @if (Session::has('success'))
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.success("{{ session('success') }}")
+
+        @elseif (Session::has('error'))
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            toastr.error("{{ session('error') }}")
+        @endif
+    </script>
+     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="crsf-token"]').attr('content')
+            }
+        });
+        $('.dltBtn').click(function(e) {
+            var form = $(this).closest('form');
+            var dataID = $(this).data('id');
+            e.preventDefault();
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: true,
+                reverseButtons: true
+            }).then((willDelete) => {
+                if (willDelete.value) {
+                    form.submit();
+                    swal(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
+        });
+    </script>
 </body>
 
 

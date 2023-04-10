@@ -11,22 +11,36 @@
                 </a>
             </li>
 
-            <li>
-                <a href="" aria-expanded="false">
+            <li class="{{ request()->is('admin/countries') ? 'active' : '' }}">
+                <a href="{{ route('admin.countries.index') }}" aria-expanded="false">
                     <i class="nav-icon ti ti-layers-alt"></i>
-                    <span class="nav-title">Courses</span>
+                    <span class="nav-title">Country</span>
                 </a>
             </li>
 
-            <li>
-                <a href="" aria-expanded="false">
+            <li class="{{ request()->is('admin/schools') ? 'active' : '' }}">
+                <a href="{{ route('admin.schools.index') }}" aria-expanded="false">
+                    <i class="nav-icon ti ti-layers-alt"></i>
+                    <span class="nav-title">Schools</span>
+                </a>
+            </li>
+
+            <li class="{{ request()->is('admin/events') ? 'active' : '' }}">
+                <a href="{{ route('admin.events.index') }}" aria-expanded="false">
                     <i class="nav-icon ti ti-layers-alt"></i>
                     <span class="nav-title">Events</span>
                 </a>
             </li>
 
-            <li>
-                <a href="" aria-expanded="false">
+            <li class="{{ request()->is('admin/categories') ? 'active' : '' }}">
+                <a href="{{ route('admin.categories.index') }}" aria-expanded="false">
+                    <i class="nav-icon ti ti-tag"></i>
+                    <span class="nav-title">Blogs Category</span>
+                </a>
+            </li>
+
+            <li class="{{ request()->is('admin/blogs') ? 'active' : '' }}">
+                <a href="{{ route('admin.blogs.index') }}" aria-expanded="false">
                     <i class="nav-icon ti ti-tag"></i>
                     <span class="nav-title">Blogs</span>
                 </a>
@@ -42,7 +56,7 @@
             <li>
                 <a href="" aria-expanded="false">
                     <i class="nav-icon ti ti-settings"></i>
-                    <span class="nav-title">Settings</span>
+                    <span class="nav-title">Contact Messages</span>
                 </a>
             </li>
 

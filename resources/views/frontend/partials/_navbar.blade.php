@@ -40,7 +40,7 @@
                 </li>
             </ul>
             <ul class="sign_up_btn pull-right dn-smd mt20">
-                <li class="list-inline-item list_s"><a href="{{ route('login') }}" class="btn flaticon-user"> <span class="dn-lg">Login/Register</span></a></li>
+                {{-- <li class="list-inline-item list_s"><a href="{{ route('login') }}" class="btn flaticon-user"> <span class="dn-lg">Login/Register</span></a></li> --}}
                 <li class="list-inline-item list_s">
 
                 </li>
@@ -61,8 +61,8 @@
     <div class="mk-fullscreen-search-overlay" id="mk-search-overlay">
         <a href="#" class="mk-fullscreen-close" id="mk-fullscreen-close-button"><i class="fa fa-times"></i></a>
         <div id="mk-fullscreen-search-wrapper">
-            <form method="get" id="mk-fullscreen-searchform">
-                <input type="text" value="" placeholder="Search courses..." id="mk-fullscreen-search-input">
+            <form action="{{ route('search') }}" method="get" id="mk-fullscreen-searchform">
+                <input type="text" value="" placeholder="Search courses..." id="mk-fullscreen-search-input" name="query">
                 <i class="flaticon-magnifying-glass fullscreen-search-icon"><input value="" type="submit"></i>
             </form>
         </div>
@@ -87,9 +87,9 @@
                             <a href="#" class="mk-fullscreen-close" id="mk-fullscreen-close-button2"><i
                                     class="fa fa-times"></i></a>
                             <div id="mk-fullscreen-search-wrapper2">
-                                <form method="get" id="mk-fullscreen-searchform2">
+                                <form action="{{ route('search') }}" method="get" id="mk-fullscreen-searchform2">
                                     <input type="text" value="" placeholder="Search courses..."
-                                        id="mk-fullscreen-search-input2">
+                                        id="mk-fullscreen-search-input2" name="query">
                                     <i class="flaticon-magnifying-glass fullscreen-search-icon"><input value=""
                                             type="submit"></i>
                                 </form>
@@ -119,8 +119,8 @@
                 <a href="{{ route('blog') }}"><span class="title">Blog</span></a>
             </li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
-            <li><a href="{{ route('login') }}"><span class="flaticon-user"></span> Login</a></li>
-            <li><a href="{{ route('register') }}"><span class="flaticon-edit"></span> Register</a></li>
+            {{-- <li><a href="{{ route('login') }}"><span class="flaticon-user"></span> Login</a></li>
+            <li><a href="{{ route('register') }}"><span class="flaticon-edit"></span> Register</a></li> --}}
         </ul>
     </nav>
 </div>

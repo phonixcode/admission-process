@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Blog;
+use App\Models\School;
+use App\Models\SchoolTag;
+use Database\Factories\SchoolFactory;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -25,5 +29,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'), // password
             'remember_token' => Str::random(10),
         ]);
+
+        $this->call([
+            SchoolTagSeeder::class,
+            BlogCategorySeeder::class,
+        ]);
+
+        School::factory(13)->create();
+        //Blog::factory(2)->create();
     }
 }
