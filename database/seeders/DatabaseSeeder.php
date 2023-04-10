@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SchoolTagSeeder::class,
             BlogCategorySeeder::class,
+            TestimonialSeeder::class,
         ]);
 
         School::factory(13)->create();

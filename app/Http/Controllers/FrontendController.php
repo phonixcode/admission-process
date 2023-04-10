@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Models\BlogCategory;
-use App\Models\BlogReview;
 use App\Models\Event;
 use App\Models\School;
 use App\Models\SchoolTag;
+use App\Models\BlogReview;
+use App\Models\Testimonial;
+use App\Models\BlogCategory;
+use App\Models\Message;
 use App\Models\SchoolReview;
 use Illuminate\Http\Request;
 
@@ -15,9 +17,10 @@ class FrontendController extends Controller
 {
     public function landingPage()
     {
-        $featured_schools = School::with('school_reviews')->where('is_featured', 1)->get();
+        $featured_schools = School::with('school_reviews')->where('is_featured', 1)->limit(4)->get();
         $blogs = Blog::latest()->limit(4)->get();
-        return view('frontend.pages.landing-page', compact('featured_schools', 'blogs'));
+        $testimonials = Testimonial::all();
+        return view('frontend.pages.landing-page', compact('featured_schools', 'blogs', 'testimonials'));
     }
 
     public function schoolPage(Request $request)
@@ -147,6 +150,21 @@ class FrontendController extends Controller
     public function contactPage()
     {
         return view('frontend.pages.contact');
+    }
+
+    public function contactSubmit(Request $request)
+    {
+        $request->validate([
+            'name'          => 'required|string',
+            'email'         => 'required|email',
+            'subject'       => 'required|string',
+            'message'       => 'required|string',
+        ]);
+
+        $data = $request->all();
+        return Message::create($data)
+            ? back()->with('success', 'Thanks for contacting us')
+            : back()->with('error', 'Something went wrong, Please try again later!');
     }
 
     public function blogPage()

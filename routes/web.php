@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\SchoolTagController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\AuthController as ControllersAuthController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
@@ -31,10 +32,11 @@ Route::get('search', [FrontendController::class, 'search'])->name('search');
 Route::get('events', [FrontendController::class, 'eventPage'])->name('events');
 Route::get('event-details/{slug}', [FrontendController::class, 'eventDetails'])->name('events.details');
 Route::get('/about-us', [FrontendController::class, 'aboutUsPage'])->name('about-us');
-Route::get('/contact', [FrontendController::class, 'contactPage'])->name('contact');
 Route::get('blog', [FrontendController::class, 'blogPage'])->name('blog');
 Route::get('blog-details/{slug}', [FrontendController::class, 'blogDetails'])->name('blog.details');
 Route::post('blog-review/{slug}', [FrontendController::class, 'blogReview'])->name('blog.review');
+Route::get('/contact', [FrontendController::class, 'contactPage'])->name('contact');
+Route::post('contact', [FrontendController::class, 'contactSubmit'])->name('contact.submit');
 Route::get('/join-team', [FrontendController::class, 'teamsPage'])->name('teams');
 Route::get('/faq', [FrontendController::class, 'faqPage'])->name('faqs');
 Route::get('/privacy', [FrontendController::class, 'privacyPage'])->name('privacy');
@@ -55,11 +57,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::get('messages', [DashboardController::class, 'messages'])->name('messages');
         Route::resource('schools', SchoolController::class);
         Route::resource('countries', SchoolTagController::class);
         Route::resource('events', EventController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('blogs', BlogController::class);
+        Route::resource('testimonials', TestimonialController::class);
         Route::post('logout',[AuthController::class,'logout'])->name('logout');
     });
 

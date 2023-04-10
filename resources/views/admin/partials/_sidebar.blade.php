@@ -46,15 +46,15 @@
                 </a>
             </li>
 
-            <li>
-                <a href="" aria-expanded="false">
+            <li class="{{ request()->is('admin/testimonials') ? 'active' : '' }}">
+                <a href="{{ route('admin.testimonials.index') }}" aria-expanded="false">
                     <i class="nav-icon ti ti-panel"></i>
                     <span class="nav-title">Testimonals</span>
                 </a>
             </li>
 
-            <li>
-                <a href="" aria-expanded="false">
+            <li class="{{ request()->is('admin/messages') ? 'active' : '' }}">
+                <a href="{{ route('admin.messages') }}" aria-expanded="false">
                     <i class="nav-icon ti ti-settings"></i>
                     <span class="nav-title">Contact Messages</span>
                 </a>

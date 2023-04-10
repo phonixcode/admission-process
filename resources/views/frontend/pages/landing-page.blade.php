@@ -408,91 +408,24 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="testimonial_slider_home3">
+                        @foreach ($testimonials as $item)
                         <div class="item">
                             <div class="testimonial_grid">
                                 <div class="t_icon home3"><span class="flaticon-quotation-mark"></span></div>
                                 <div class="testimonial_content">
                                     <div class="thumb">
-                                        <img class="img-fluid" src="front/images/testimonial/1.jpg" alt="1.jpg">
-                                        <h4>Alex Gibson</h4>
-                                        <p>Student - STC</p>
+                                        <img class="img-fluid" src="{{ asset('media/testimonial/' . $item->photo) }}" alt="1.jpg">
+                                        <h4>{{ $item->name }}</h4>
+                                        <p>Student - {{ strtoupper($item->school) }}</p>
                                     </div>
                                     <div class="details">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                                            mollitia,molestiae quas vel sint commodi repudiandae consequuntur
-                                            voluptatum…</p>
+                                        <p>{{ $item->quote }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="testimonial_grid">
-                                <div class="t_icon home3"><span class="flaticon-quotation-mark"></span></div>
-                                <div class="testimonial_content">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="front/images/testimonial/2.jpg" alt="2.jpg">
-                                        <h4>Alex Gibson</h4>
-                                        <p>Student - UOM</p>
-                                    </div>
-                                    <div class="details">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                                            mollitia,molestiae quas vel sint commodi repudiandae consequuntur
-                                            voluptatum…</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial_grid">
-                                <div class="t_icon home3"><span class="flaticon-quotation-mark"></span></div>
-                                <div class="testimonial_content">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="front/images/testimonial/3.jpg" alt="3.jpg">
-                                        <h4>Alex Gibson</h4>
-                                        <p>Student STC</p>
-                                    </div>
-                                    <div class="details">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                                            mollitia,molestiae quas vel sint commodi repudiandae consequuntur
-                                            voluptatum…</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial_grid">
-                                <div class="t_icon home3"><span class="flaticon-quotation-mark"></span></div>
-                                <div class="testimonial_content">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="front/images/testimonial/4.jpg" alt="4.jpg">
-                                        <h4>Alex Gibson</h4>
-                                        <p>Student - UOM</p>
-                                    </div>
-                                    <div class="details">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                                            mollitia,molestiae quas vel sint commodi repudiandae consequuntur
-                                            voluptatum…</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial_grid">
-                                <div class="t_icon home3"><span class="flaticon-quotation-mark"></span></div>
-                                <div class="testimonial_content">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="front/images/testimonial/5.jpg" alt="5.jpg">
-                                        <h4>Alex Gibson</h4>
-                                        <p>Student - STC</p>
-                                    </div>
-                                    <div class="details">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                                            mollitia,molestiae quas vel sint commodi repudiandae consequuntur
-                                            voluptatum…</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
